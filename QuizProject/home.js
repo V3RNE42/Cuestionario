@@ -13,7 +13,8 @@ let start    = document.getElementById("start");
 
 function eventos() {
   try {
-    submit.addEventListener("click", async () => {
+    submit.addEventListener("click", async (evento) => {
+      evento.preventDefault();
       saveStorage(await choose());
     });
   } catch (error) {
@@ -21,7 +22,9 @@ function eventos() {
   }
 
   try {
-    start.addEventListener("click", async () => {
+    start.addEventListener("click", async (evento) => {
+      evento.preventDefault();
+      start.disabled=true;
       let lastRegistry = await recoverStorage();
       Q = await queryThis(lastRegistry.category);
       displayTest(Q);
